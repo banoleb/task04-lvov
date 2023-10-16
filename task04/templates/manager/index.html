@@ -16,15 +16,10 @@ User Manager
   {% endfor %}
   {% endif %}
 
-
-
-
   {% else %}
   <h4> User Management Console</h4>
   <p>Welcome to the User Management Console, a powerful tool designed to simplify the management of users within your system. This console provides administrators and system operators with the ability to efficiently oversee and control user-related activities.</p>
   {% endif %}
-
-
 
   {% if user.is_authenticated %}
 <form action='' method="post" >
@@ -47,15 +42,18 @@ User Manager
 </svg>Delete</button>
 </div>
 
-
 </div>
-
 
   <p></p>
   <table class="table">
     <thead style="--bs-table-bg: #2b2f71; color: white;">
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <button type="button" onclick='selects()'  class="btn btn-outline-primary">Select</button>
+          <button type="button" onclick='deSelect()' class="btn btn-outline-primary">Deselect</button> 
+        </div>
+      </th>
       <th scope="col">Username</th>
       <th scope="col">Real Name</th>
       <th scope="col">Email</th>
@@ -74,8 +72,6 @@ User Manager
 
 
   </form>
-
-
 
   {% endif %}
   {% if user.is_authenticated %}
