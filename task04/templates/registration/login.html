@@ -1,19 +1,14 @@
 {% extends "base.html" %}
 {% load django_bootstrap5 %}
 {% block content %}
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p class="text-center">
-        У вашего аккаунта нет доступа к этой странице.
-        Чтобы продолжить, войдите в систему с аккаунтом,
-        у которого есть доступ.
-      </p>
-    {% else %}
-    <h4 class="text-center"> User Management Console</h4>
-  <p class="text-center">Welcome to the User Management Console, a powerful tool designed to simplify the management of users within your system. This console provides administrators and system operators with the ability to efficiently oversee and control user-related activities.</p>
 
-    {% endif %}
-  {% endif %}
+{% if user.is_authenticated %}
+<p class="text-center">
+  you are already logged in
+</p>
+{% else %}
+<h4 class="text-center"> User Management Console</h4>
+<p class="text-center">Welcome to the User Management Console, a powerful tool designed to simplify the management of users within your system. This console provides administrators and system operators with the ability to efficiently oversee and control user-related activities.</p>
   <div class="col d-flex justify-content-center">
     <div class="card" style="width: 40rem;">
       <div class="card-header">
@@ -30,4 +25,6 @@
       </div>
     </div>
   </div>
+
+  {% endif %}
 {% endblock %}
