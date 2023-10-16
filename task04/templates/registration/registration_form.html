@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+
+
+	<form method="POST" novalidate>
+		{% csrf_token %}
+<div class="card text-center col-md-auto">
+	<div class="card-header">
+		Sign Up
+	</div>
+	<div class="card-body ">
+	  <h5 class="card-title"></h5>
+	  {% for field in form %}
+	  <p>
+		  {% if field.errors %}
+		  <ul class="errorlist">
+			  {% for error in field.errors %}
+			  <li>{{ error }}</li>
+			  {% endfor %}
+		  </ul>
+		  {% endif %}
+	
+
+		  <div class="row justify-content-center">
+			<div class="col-4">
+				{{ field.label_tag }}
+			</div>
+			<div class="col-4">
+				{{ field }}
+			</div>
+		  </div>
+		 
+
+	  </p>
+	  {% endfor %}
+	  <input type="submit" value="Register" />
+	</div>
+	<div class="card-footer text-muted">
+		...
+	</div>
+  </div>
+</form>
+
+
+
+
+{% endblock %}

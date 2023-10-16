@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+User Manager
+{% endblock %}
+{% block content %}
+
+  <!--showing success message-->
+
+  {% if user.is_authenticated %}
+  {% if messages %}
+  {% for message in messages %}
+      <div class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+  {% endfor %}
+  {% endif %}
+
+
+
+
+  {% else %}
+  <h4> User Management Console</h4>
+  <p>Welcome to the User Management Console, a powerful tool designed to simplify the management of users within your system. This console provides administrators and system operators with the ability to efficiently oversee and control user-related activities.</p>
+  {% endif %}
+
+
+
+  {% if user.is_authenticated %}
+<form action='' method="post" >
+  {%csrf_token%}
+  <div  class="row">
+    <div class="col">
+  <button type="submit" class="btn btn-secondary" name="block"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 10.0288C7.47142 10 8.05259 10 8.8 10H15.2C15.9474 10 16.5286 10 17 10.0288M7 10.0288C6.41168 10.0647 5.99429 10.1455 5.63803 10.327C5.07354 10.6146 4.6146 11.0735 4.32698 11.638C4 12.2798 4 13.1198 4 14.8V16.2C4 17.8802 4 18.7202 4.32698 19.362C4.6146 19.9265 5.07354 20.3854 5.63803 20.673C6.27976 21 7.11984 21 8.8 21H15.2C16.8802 21 17.7202 21 18.362 20.673C18.9265 20.3854 19.3854 19.9265 19.673 19.362C20 18.7202 20 17.8802 20 16.2V14.8C20 13.1198 20 12.2798 19.673 11.638C19.3854 11.0735 18.9265 10.6146 18.362 10.327C18.0057 10.1455 17.5883 10.0647 17 10.0288M7 10.0288V8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8V10.0288" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>Block</button>
+ 
+ 
+  <button type="submit" class="btn btn-secondary" name="unblock"><svg fill="#000000" width="24" height="24" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+    <path d="M4 30.016v-14.016q0-0.832 0.576-1.408t1.44-0.576v-4q0-2.72 1.344-5.024t3.616-3.648 5.024-1.344q3.616 0 6.368 2.272t3.424 5.728h-4.16q-0.608-1.76-2.144-2.88t-3.488-1.12q-2.496 0-4.256 1.76t-1.728 4.256v4h16q0.8 0 1.408 0.576t0.576 1.408v14.016q0 0.832-0.576 1.408t-1.408 0.576h-20q-0.832 0-1.44-0.576t-0.576-1.408zM8 28h16v-9.984h-16v9.984z"></path>
+    </svg>Unblock</button>
+
+
+  <button type="submit" class="btn btn-danger" name="delete"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 30 30">
+    <path d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z"></path>
+</svg>Delete</button>
+</div>
+
+
+</div>
+
+
+  <p></p>
+  <table class="table">
+    <thead style="--bs-table-bg: #2b2f71; color: white;">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Real Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Last Login</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for post in form %}
+    {% include "includes/table.html" %}
+  
+{% endfor %}
+</tbody>
+</table>
+
+
+
+  </form>
+
+
+
+  {% endif %}
+  {% if user.is_authenticated %}
+  <form action='' method="get" >
+   
+    <div  class="row">
+    <div class="col-sm-1">
+      <select  class="form-select" aria-label="Default select example" name="sorted">
+        <option selected value="0">ID</option>
+        <option value="1">username</option>
+        <option value="2">Status</option>
+      </select>
+      
+    </div>
+      <div class="col-sm-1">
+        <button type="submit" class="btn btn-secondary">Sort</button>
+      </div>
+  </div>
+  </form>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+<header>
+  <nav class="navbar navbar-light " style="background-color: #2b2f71">
+    <div class="container">
+      <a class="navbar-brand link-primary" href="{% url 'manager:index' %}">
+        User Manager
+      </a>
+        <ul class="nav  nav-pills">
+          {% if user.is_authenticated %}
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                  href="{% url 'manager:index' %}">{{ user.username }}</a></button>
+              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                  href="{% url 'logout' %}">Logout</a></button>
+            </div>
+          {% else %}
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                  href="{% url 'login' %}">Login</a></button>
+              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                  href="{% url 'registration' %}">Sign Up</a></button>
+            </div>
+          {% endif %}
+        </ul>
+    </div>
+  </nav>
+</header>

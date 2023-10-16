@@ -1,0 +1,15 @@
+<tr>
+  <th scope="row">
+    <input type="checkbox" value="{{ post.username }}" id="{{ post.id }}" name="users">
+  </th>
+  <td{% if not post.is_active %} class="text-decoration-line-through text-danger" {% endif %}>{{ post.username }}</td>
+  <td{% if not post.is_active %} class="text-decoration-line-through text-danger" {% endif %}>{{ post.first_name }}.{{ post.last_name }}</td>
+  <td{% if not post.is_active %} class="text-decoration-line-through text-danger" {% endif %}>{{ post.email }} </td>
+  <td>{{ post.last_login }} and {{ post.id}}</td>
+  <td>{% if post.is_active == True %}
+    <h5 class="card-title">Active</h5>
+    {% elif post.is_active == False  %}
+    <h5 class="card-title">Blocked</h5>
+    {% endif %}
+  </td>
+</tr>
